@@ -15,10 +15,12 @@ namespace AspNetWebApi.Core.Models
         [Required]
         public string Nome { get; set; }
 
+        public string ImgUrl { get; set; }
+
         [Required]
         public decimal Preco { get; set; }
 
-        public DateTime Created { get; set; }
-        public DateTime Modified { get; set; }
+        public DateTime? Created { get; set; }
+        public DateTime? Modified { get; set; }
     }
 }

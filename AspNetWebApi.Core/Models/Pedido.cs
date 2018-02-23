@@ -16,8 +16,8 @@ namespace AspNetWebApi.Core.Models
         [ForeignKey("Cliente")]
         public int IdCliente { get; set; }
 
-        public DateTime Created { get; set; }
-        public DateTime Modified { get; set; }
+        public DateTime? Created { get; set; }
+        public DateTime? Modified { get; set; }
 
         public Cliente Cliente { get; set; }
     }
