@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -13,12 +14,14 @@ namespace AspNetWebApi.Core.Models
         [Key]
         public int Id { get; set; }
 
-        [ForeignKey("Cliente")]
-        public int IdCliente { get; set; }
+        [Required]
+        public DateTime Created { get; set; }
 
-        public DateTime? Created { get; set; }
-        public DateTime? Modified { get; set; }
+        [Required]
+        public DateTime Modified { get; set; }
 
         public Cliente Cliente { get; set; }
+        public ICollection<PedidoProduto> PedidoProdutos { get; set; }
+
     }
 }

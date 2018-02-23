@@ -17,9 +17,12 @@ namespace AspNetWebApi.Core.Models
 
         [Required]
         public string Senha { get; set; }
+        
+        [Required]
+        public DateTime Created { get; set; }
 
-        public DateTime? Created { get; set; }
-        public DateTime? Modified { get; set; }
+        [Required]
+        public DateTime Modified { get; set; }
 
         public ICollection<Pedido> Pedidos { get; set; }
 
