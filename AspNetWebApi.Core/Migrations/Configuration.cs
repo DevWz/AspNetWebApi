@@ -19,6 +19,7 @@ namespace AspNetWebApi.Core.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
 
+            /*
             context.Clientes.AddOrUpdate(x => x.Id,
                 new Models.Cliente() { Email = "mail@mail.com", Senha = "123" }
                 );
@@ -31,6 +32,7 @@ namespace AspNetWebApi.Core.Migrations
                 new Models.Produto() { Nome = "Café", Preco = 7.50m },
                 new Models.Produto() { Nome = "Açucar", Preco = 3.47m }
                 );
+            */
 
         }
     }

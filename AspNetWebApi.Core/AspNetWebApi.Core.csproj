@@ -49,18 +49,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201802232047534_InitialCreate.cs" />
+    <Compile Include="Migrations\201802232047534_InitialCreate.Designer.cs">
+      <DependentUpon>201802232047534_InitialCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\DB\AspNetWebApiDbContext.cs" />
     <Compile Include="Models\Pedido.cs" />
+    <Compile Include="Models\PedidoProduto.cs" />
     <Compile Include="Models\Produto.cs" />
-    <Compile Include="Models\Venda.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201802232047534_InitialCreate.resx">
+      <DependentUpon>201802232047534_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
