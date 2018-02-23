@@ -24,12 +24,25 @@ namespace AspNetWebApi.Core.Models.DB
         public virtual DbSet<Cliente> Clientes { get; set; }
         public virtual DbSet<Produto> Produtos { get; set; }
         public virtual DbSet<Pedido> Pedidos { get; set; }
-        public virtual DbSet<Venda> Vendas { get; set; }
+        // public virtual DbSet<Venda> Vendas { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Pedido>()
+                .HasRequired<Cliente>(x => x.Cliente) // Cliente obrigatorio para Pedido
+                .WithMany(x => x.Pedidos) // Multiplos Pedidos permitidos para Cliente
+                .HasForeignKey<int>(x => x.IdCliente); // FK de Pedido para Cliente
+
+            modelBuilder.Entity<Cliente>()
+                .ToTable("Clientes");
+
+            modelBuilder.Entity<Produto>()
+                .ToTable("Produtos");
+
+            modelBuilder.Entity<Pedido>()
+                .ToTable("Pedidos");
 
         }
 
