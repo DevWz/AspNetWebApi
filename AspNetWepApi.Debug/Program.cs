@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AspNetWebApi.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace AspNetWepApi.Debug
     {
         static void Main(string[] args)
         {
+            AspNetWebApi.Core.Models.DB.AspNetWebApiDbContext manager = new AspNetWebApi.Core.Models.DB.AspNetWebApiDbContext();
 
         }
     }
