@@ -24,16 +24,34 @@ namespace AspNetWebApi.Core.Models.DB
         public virtual DbSet<Cliente> Clientes { get; set; }
         public virtual DbSet<Produto> Produtos { get; set; }
         public virtual DbSet<Pedido> Pedidos { get; set; }
-        // public virtual DbSet<Venda> Vendas { get; set; }
+        public virtual DbSet<PedidoProduto> PedidoProdutos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Cliente>()
+                .Property(x => x.Email)
+                .IsUnicode(false);
+
+            // One-to-Many
+            // Clientes podem ter muitos Pedidos
             modelBuilder.Entity<Pedido>()
-                .HasRequired<Cliente>(x => x.Cliente) // Cliente obrigatorio para Pedido
-                .WithMany(x => x.Pedidos) // Multiplos Pedidos permitidos para Cliente
-                .HasForeignKey<int>(x => x.IdCliente); // FK de Pedido para Cliente
+                // .HasRequired<Cliente>(x => x.Cliente) // Cliente obrigatorio para Pedido
+                .HasOptional<Cliente>(x => x.Cliente) // Cliente opcional para Pedido // Soluciona problema da Null FK quando Cliente é deletado
+                .WithMany(x => x.Pedidos); // Multiplos Pedidos permitidos para Cliente
+
+            // One-to-Many
+            // Pedidos podem ter muitos PedidoProdutos
+            modelBuilder.Entity<PedidoProduto>()
+                .HasRequired<Pedido>(x => x.Pedido) // Pedido obrigatorio para PedidoItem
+                .WithMany(x => x.PedidoProdutos); // Multiplos PedidoItem para Pedido
+
+            // One-to-Zero-or-One
+            // PedidoProduto pode ou não ter um Produto
+            modelBuilder.Entity<PedidoProduto>()
+                .HasOptional(x => x.Produto)
+                .WithRequired(x => x.PedidoProduto);
 
             modelBuilder.Entity<Cliente>()
                 .ToTable("Clientes");
@@ -43,6 +61,9 @@ namespace AspNetWebApi.Core.Models.DB
 
             modelBuilder.Entity<Pedido>()
                 .ToTable("Pedidos");
+
+            modelBuilder.Entity<PedidoProduto>()
+                .ToTable("PedidoProdutos");
 
         }
 
